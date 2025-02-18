@@ -152,6 +152,8 @@ def process_picture(config: ConversionConfig, shape, slide_idx) -> Union[ImageEl
 
     file_prefix = ''.join(os.path.basename(config.pptx_path).split('.')[:-1])
     pic_name = file_prefix + f'_{picture_count}'
+    if(config.is_wiki_js):
+        pic_name = pic_name.lower()
     pic_ext = shape.image.ext
     if not os.path.exists(config.image_dir):
         os.makedirs(config.image_dir)

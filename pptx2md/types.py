@@ -60,6 +60,9 @@ class ConversionConfig(BaseModel):
     is_wiki: bool = False
     """Generate output as wikitext (TiddlyWiki)"""
 
+    is_wiki_js: bool = False
+    """Generate output and especially img links compatible to Wiki.js"""
+
     is_mdk: bool = False
     """Generate output as madoko markdown"""
 
