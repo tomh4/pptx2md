@@ -20,6 +20,8 @@ from functools import partial
 from operator import attrgetter
 from typing import List, Union
 
+from pathlib import Path
+
 from PIL import Image
 from pptx import Presentation
 from pptx.enum.dml import MSO_COLOR_TYPE, MSO_THEME_COLOR
@@ -160,7 +162,7 @@ def process_picture(config: ConversionConfig, shape, slide_idx) -> Union[ImageEl
 
     output_path = config.image_dir / f'{pic_name}.{pic_ext}'
     common_path = os.path.commonpath([config.output_path, config.image_dir])
-    img_outputter_path = os.path.relpath(output_path, common_path)
+    img_outputter_path = Path(os.path.relpath(output_path, common_path)).as_posix()
     with open(output_path, 'wb') as f:
         f.write(shape.image.blob)
         picture_count += 1
