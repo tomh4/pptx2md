@@ -244,7 +244,13 @@ def process_shapes(config: ConversionConfig, current_shapes, slide_id: int) -> L
 
 def parse(config: ConversionConfig, prs: Presentation) -> ParsedPresentation:
     result = ParsedPresentation(slides=[])
-
+    if(config.disable_master):
+        for slide in prs.slides:
+            for shape in slide.shapes:
+                # You can selectively remove shapes (like text, pictures, etc.)
+                if shape in prs.slide_master.slide_layouts[0]:
+                    sp = shape
+                    slide.shapes._spTree.remove(sp._element)
     for idx, slide in enumerate(tqdm(prs.slides, desc='Converting slides')):
         if config.page is not None and idx + 1 != config.page:
             continue

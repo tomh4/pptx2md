@@ -74,6 +74,7 @@ def parse_args() -> ConversionConfig:
         disable_color=args.disable_color,
         disable_escaping=args.disable_escaping,
         disable_notes=args.disable_notes,
+        disable_master=args.disable_master,
         enable_slides=args.enable_slides,
         try_multi_column=args.try_multi_column,
         is_wiki=args.wiki,
